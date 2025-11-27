@@ -1,0 +1,303 @@
+--
+-- PostgreSQL database dump
+--
+
+\restrict 8vKvzOJrGybb6UShFgAVUWvLqHAOmYMdwZmVp583VXtkz2gw7sbiXswaswegj5b
+
+-- Dumped from database version 18.1
+-- Dumped by pg_dump version 18.1
+
+-- Started on 2025-11-27 08:59:12
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 222 (class 1259 OID 16398)
+-- Name: Balances; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Balances" (
+    id integer NOT NULL,
+    "currBalance" double precision DEFAULT '0'::double precision,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "UserId" integer,
+    username character varying(255)
+);
+
+
+ALTER TABLE public."Balances" OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 16397)
+-- Name: Balances_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Balances_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Balances_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 5036 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: Balances_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Balances_id_seq" OWNED BY public."Balances".id;
+
+
+--
+-- TOC entry 224 (class 1259 OID 16524)
+-- Name: Transactions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Transactions" (
+    id integer NOT NULL,
+    amount double precision NOT NULL,
+    service character varying(255),
+    "trxDate" timestamp with time zone,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "UserId" integer
+);
+
+
+ALTER TABLE public."Transactions" OWNER TO postgres;
+
+--
+-- TOC entry 223 (class 1259 OID 16523)
+-- Name: Transactions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Transactions_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Transactions_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 5037 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: Transactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Transactions_id_seq" OWNED BY public."Transactions".id;
+
+
+--
+-- TOC entry 220 (class 1259 OID 16386)
+-- Name: Users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Users" (
+    id integer NOT NULL,
+    username character varying(255),
+    email character varying(255),
+    password character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public."Users" OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 16385)
+-- Name: Users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Users_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Users_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 5038 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: Users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Users_id_seq" OWNED BY public."Users".id;
+
+
+--
+-- TOC entry 4867 (class 2604 OID 16401)
+-- Name: Balances id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Balances" ALTER COLUMN id SET DEFAULT nextval('public."Balances_id_seq"'::regclass);
+
+
+--
+-- TOC entry 4869 (class 2604 OID 16527)
+-- Name: Transactions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Transactions" ALTER COLUMN id SET DEFAULT nextval('public."Transactions_id_seq"'::regclass);
+
+
+--
+-- TOC entry 4866 (class 2604 OID 16389)
+-- Name: Users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Users" ALTER COLUMN id SET DEFAULT nextval('public."Users_id_seq"'::regclass);
+
+
+--
+-- TOC entry 5028 (class 0 OID 16398)
+-- Dependencies: 222
+-- Data for Name: Balances; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Balances" (id, "currBalance", "createdAt", "updatedAt", "UserId", username) FROM stdin;
+1	0	2025-11-25 10:30:02.808+07	2025-11-25 10:30:02.808+07	1	magomedov
+2	0	2025-11-25 11:17:18.777+07	2025-11-26 10:41:49.286+07	6	Osman Urtugrul
+4	100000	2025-11-26 18:34:39.993+07	2025-11-26 18:36:42.024+07	8	tsakuryan333
+3	250000	2025-11-25 11:23:39.477+07	2025-11-26 21:22:25.286+07	7	Al Burayqan
+5	250000	2025-11-26 18:39:39.196+07	2025-11-27 05:50:57.681+07	9	armantsakur
+\.
+
+
+--
+-- TOC entry 5030 (class 0 OID 16524)
+-- Dependencies: 224
+-- Data for Name: Transactions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Transactions" (id, amount, service, "trxDate", "createdAt", "updatedAt", "UserId") FROM stdin;
+1	100000	PLN	2025-11-26 18:57:49.331+07	2025-11-26 18:57:49.332+07	2025-11-26 18:57:49.332+07	7
+4	50000	Top Up Game	2025-11-27 05:50:57.65+07	2025-11-27 05:50:57.65+07	2025-11-27 05:50:57.65+07	9
+\.
+
+
+--
+-- TOC entry 5026 (class 0 OID 16386)
+-- Dependencies: 220
+-- Data for Name: Users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Users" (id, username, email, password, "createdAt", "updatedAt") FROM stdin;
+1	magomedov	maom@gmail.com	$2b$10$K.NbMRAOcDdCnGV.YQVvBOqMyJEdGsj326hFIgzJNvSTcYyawwL4i	2025-11-25 10:30:02.753+07	2025-11-25 10:30:02.753+07
+3	makachev	makamaka@gmail.com	$2b$10$531pm.XIaSG31ZwfNOc0I.IWCQuINDnDZDiTBpHX2gZXLM0GNqx12	2025-11-25 11:12:48.408+07	2025-11-25 11:12:48.408+07
+4	makachev	makamaka@gmail.com	$2b$10$oH7rmF72icA6wJIFcEhm4.ucqFLevv9LaZJH/McwLTwsxJriI/Psu	2025-11-25 11:14:12.197+07	2025-11-25 11:14:12.197+07
+7	Al Burayqan	burayq@gmail.com	$2b$10$uqgZ.gZk0jRv8IiS9KnrcepNolu8jbmK8iz1uGQOOnYzuhwg48jlC	2025-11-25 11:23:39.42+07	2025-11-26 10:40:35.66+07
+2	Zat Chimaev	toptop@rocket.com	$2b$10$11mP9ymoF1QPPva0FKWNc.hnmiOQBv9n/6K8NJXPHCM/TjpjbCy7W	2025-11-25 11:10:57.798+07	2025-11-26 10:41:10.781+07
+6	Osman Urtugrul	makamaka@gmail.com	$2b$10$04oOl5AeeWAAZQdEhih00egRhE7rmtNCli4JQ2EIDYjD2LLv5xGC6	2025-11-25 11:17:18.768+07	2025-11-26 10:41:49.259+07
+8	tsakuryan333	tsakur@gmail.com	$2b$10$YdHd1Kw7HSftqZZjJFnF5uT.oZJgO06w/ElLUR9eF/lemx3li0ASi	2025-11-26 18:34:39.98+07	2025-11-26 18:34:39.98+07
+9	armantsakur	atsakur@gmail.com	$2b$10$OqQcc8NswFP3ci/w4JcpJeVu3TP3gKfgjb5UxnW/nNBp05KQL9Jfa	2025-11-26 18:39:39.163+07	2025-11-26 18:39:39.163+07
+\.
+
+
+--
+-- TOC entry 5039 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: Balances_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Balances_id_seq"', 5, true);
+
+
+--
+-- TOC entry 5040 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: Transactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Transactions_id_seq"', 4, true);
+
+
+--
+-- TOC entry 5041 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: Users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Users_id_seq"', 9, true);
+
+
+--
+-- TOC entry 4873 (class 2606 OID 16407)
+-- Name: Balances Balances_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Balances"
+    ADD CONSTRAINT "Balances_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4875 (class 2606 OID 16533)
+-- Name: Transactions Transactions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Transactions"
+    ADD CONSTRAINT "Transactions_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4871 (class 2606 OID 16396)
+-- Name: Users Users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Users"
+    ADD CONSTRAINT "Users_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4876 (class 2606 OID 16678)
+-- Name: Balances Balances_UserId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Balances"
+    ADD CONSTRAINT "Balances_UserId_fkey" FOREIGN KEY ("UserId") REFERENCES public."Users"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 4877 (class 2606 OID 16686)
+-- Name: Transactions Transactions_UserId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Transactions"
+    ADD CONSTRAINT "Transactions_UserId_fkey" FOREIGN KEY ("UserId") REFERENCES public."Users"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+-- Completed on 2025-11-27 08:59:12
+
+--
+-- PostgreSQL database dump complete
+--
+
+\unrestrict 8vKvzOJrGybb6UShFgAVUWvLqHAOmYMdwZmVp583VXtkz2gw7sbiXswaswegj5b
+

@@ -1,4 +1,4 @@
-# PaymentREST
+# REST API - Simple Payment
 Assignment API for Nutech Recruitment Process
 
 ---

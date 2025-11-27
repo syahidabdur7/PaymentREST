@@ -4,6 +4,7 @@ Assignment API for Nutech Recruitment Process
 ---
 
 ## Cara Jalankan
+Buka Terminal dan jalankan:
 - `npm run start`
 
 ## Fitur 

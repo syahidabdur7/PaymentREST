@@ -3,6 +3,9 @@ Assignment API for Nutech Recruitment Process
 
 ---
 
+## Cara Jalankan
+- `npm run start`
+
 ## Fitur 
 - **Registrasi**
 - **Login**
